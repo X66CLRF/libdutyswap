@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือการใช้งานระบบจัดตารางเวร</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Sarabun', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            margin-right: 4px;
+        }
+
+        .step-number {
+            background-color: #4f46e5;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        
+        /* Custom scrollbar for sidebar */
+        aside::-webkit-scrollbar {
+            width: 6px;
+        }
+        aside::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        aside::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-700">
+
+    <!-- Top Navigation -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-indigo-600 p-2 rounded-lg text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <h1 class="font-bold text-xl text-slate-800">คู่มือการใช้งานระบบจัดตารางเวร</h1>
+            </div>
+            <a href="#introduction" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 hidden md:block">เริ่มต้นใช้งาน</a>
+        </div>
+    </nav>
+
+    <div class="flex max-w-7xl mx-auto pt-16">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 fixed h-screen overflow-y-auto hidden md:block pt-6 pb-20 border-r border-slate-200 bg-white">
+            <nav class="space-y-1 px-4">
+                <a href="#introduction" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-50 text-slate-900">1. บทนำและภาพรวม</a>
+                <a href="#interface" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-50 text-slate-600">2. ส่วนประกอบหน้าจอ</a>
+                <a href="#library-duty" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-50 text-slate-600">3. การจัดเวรหอสมุด (งานหลัก)</a>
+                <a href="#substitute-logic" class="block px-3 py-2 rounded-md text-sm font-medium bg-indigo-50 text-indigo-700 border-l-4 border-indigo-600">4. เงื่อนไขการหาคนแทน (สำคัญ)</a>
+                <a href="#service-point" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-50 text-slate-600">5. การจัดเวรจุดบริการ</a>
+                <a href="#tools" class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-50 text-slate-600">6. เครื่องมือและการตั้งค่า</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 md:ml-64 p-6 md:p-10 space-y-12 pb-32">
+
+            <!-- Section 1: Introduction -->
+            <section id="introduction" class="scroll-mt-24">
+                <div class="bg-indigo-600 rounded-2xl p-8 text-white shadow-lg mb-8">
+                    <h2 class="text-3xl font-bold mb-4">ยินดีต้อนรับสู่ระบบจัดตารางเวร</h2>
+                    <p class="text-indigo-100 text-lg leading-relaxed">
+                        ระบบนี้ถูกออกแบบมาเพื่อช่วยบริหารจัดการตารางเวรปฏิบัติงานในวันหยุด (เสาร์-อาทิตย์) 
+                        โดยรองรับทั้งเวรประจำหอสมุดและจุดบริการอื่นๆ พร้อมระบบตรวจสอบรายชื่อซ้ำอัตโนมัติ 
+                        เพื่อให้การจัดเวรเป็นไปอย่างถูกต้องและลดความสับสน
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 2: Interface -->
+            <section id="interface" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-slate-800 border-b pb-2 mb-6 flex items-center gap-2">
+                    <span class="text-indigo-500">#</span> ส่วนประกอบหน้าจอหลัก
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-lg mb-3 text-slate-700">แถบเมนูด้านบน (Toolbar)</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start gap-3">
+                                <div class="icon-box bg-gray-100 text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></div>
+                                <div><strong>เปลี่ยนสัปดาห์:</strong> กดเพื่อดูหรือแก้ไขตารางเวรในสัปดาห์ก่อนหน้าหรือถัดไป</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="icon-box bg-white border text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+                                <div><strong>ตั้งค่าจุดบริการ:</strong> เพิ่ม ลบ หรือแก้ไขชื่อจุดบริการเสริม (เช่น ย่านมัทรี, ห้องคอมฯ)</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="icon-box bg-white border text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/></svg></div>
+                                <div><strong>บันทึกประวัติ:</strong> บันทึกข้อมูลลงฐานข้อมูล (Google Sheet) เพื่อเก็บเป็นหลักฐาน</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="icon-box bg-white border text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg></div>
+                                <div><strong>ล็อก/ปลดล็อก:</strong> ป้องกันการแก้ไขข้อมูลเมื่อจัดตารางเสร็จสิ้นแล้ว</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                         <h3 class="font-bold text-lg mb-3 text-slate-700">พื้นที่ทำงาน (Workspace)</h3>
+                         <p class="text-sm text-slate-600 mb-2">หน้าจอแบ่งเป็น 2 ฝั่ง คือ <strong>วันเสาร์ (สีม่วง)</strong> และ <strong>วันอาทิตย์ (สีแดง)</strong></p>
+                         <p class="text-sm text-slate-600 mb-4">ในแต่ละวันจะมีแถบเปลี่ยนมุมมอง 2 แบบ:</p>
+                         <div class="flex gap-2 mb-2">
+                             <div class="px-3 py-1 bg-purple-100 text-purple-700 rounded text-xs font-bold">หอสมุด</div>
+                             <span class="text-xs self-center">ใช้จัดการเวรหลัก (เจ้าของเวร และ คนแทน)</span>
+                         </div>
+                         <div class="flex gap-2">
+                             <div class="px-3 py-1 bg-purple-100 text-purple-700 rounded text-xs font-bold">เวรจุดบริการ</div>
+                             <span class="text-xs self-center">ใช้จัดการคนไปประจำจุดอื่นๆ</span>
+                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Library Duty -->
+            <section id="library-duty" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-slate-800 border-b pb-2 mb-6 flex items-center gap-2">
+                    <span class="text-indigo-500">#</span> การจัดเวรหอสมุด (Library)
+                </h2>
+
+                <div class="space-y-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <p class="text-slate-600 mb-4">นี่คือหน้าจอหลักสำหรับการจัดการบุคลากรประจำหอสมุด ประกอบด้วย 2 ส่วนสำคัญ:</p>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-100 mb-4">
+                                <h4 class="font-bold text-blue-800 mb-2">1. คนหลัก (เจ้าของเวร)</h4>
+                                <p class="text-sm text-blue-700">ระบุชื่อผู้ที่มีหน้าที่รับผิดชอบในวันนั้นตามตารางปกติ</p>
+                            </div>
+
+                            <div class="bg-orange-50 p-4 rounded-lg border border-orange-100">
+                                <h4 class="font-bold text-orange-800 mb-2">2. คนแทน (ผู้ปฏิบัติงานจริง)</h4>
+                                <p class="text-sm text-orange-700">
+                                    หากคนหลักไม่สามารถมาได้ ให้เลือกรายชื่อในช่องขวามือ 
+                                    ระบบจะแสดงลูกศร <span class="inline-block px-1 bg-white rounded border border-orange-200 text-orange-500 mx-1">➜</span> เพื่อบ่งบอกว่ามีการเปลี่ยนเวร
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h4 class="font-bold text-slate-700 mb-4 border-b pb-2">สัญลักษณ์สถานะ</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="px-2 py-1 bg-white border rounded text-xs font-medium">มาปกติ</span>
+                                    <span class="text-sm text-slate-600">คนหลักมาทำงานเอง (ไม่มีการแทน)</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="px-2 py-1 bg-orange-50 border border-orange-200 text-orange-700 text-xs font-bold">ชื่อคนแทน</span>
+                                    <span class="text-sm text-slate-600">มีการสับเปลี่ยนเวร</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="px-2 py-0.5 rounded border bg-teal-100 text-teal-700 text-[10px] font-bold">ย่านมัทรี</span>
+                                    <span class="text-sm text-slate-600">ป้ายแจ้งเตือนว่าคนนี้ถูกส่งไปประจำจุดบริการอื่น</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Logic (CRITICAL) -->
+            <section id="substitute-logic" class="scroll-mt-24">
+                <div class="bg-gradient-to-r from-slate-800 to-slate-700 text-white rounded-2xl p-8 shadow-xl">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        เงื่อนไขการเลือกคนแทน (Logic)
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-bold text-lg text-green-300 mb-2">✅ ทำได้ (อนุญาต)</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-400 mt-1">✔</span>
+                                    <span><strong>เลือกข้ามวันได้:</strong> คนที่มีเวรวันเสาร์ (ทั้งหอสมุดและจุดบริการ) สามารถมาเป็นคนแทนในวันอาทิตย์ได้</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-400 mt-1">✔</span>
+                                    <span><strong>คนพักเวรมาแทนได้:</strong> คนที่ไม่มีชื่อในตารางเลย สามารถเลือกมาแทนได้ตลอดเวลา</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-bold text-lg text-red-300 mb-2">❌ ทำไม่ได้ (ระบบล็อก)</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-red-400 mt-1">✖</span>
+                                    <span><strong>ห้ามซ้ำในวันเดียวกัน:</strong> คนที่มีชื่อปฏิบัติงานในวันนั้นแล้ว (ไม่ว่าจะอยู่จุดไหน) จะไม่มีชื่อให้เลือกซ้ำอีก</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-red-400 mt-1">✖</span>
+                                    <span><strong>ห้ามแทนตัวเอง:</strong> ไม่สามารถเลือกชื่อตัวเองมาเป็นคนแทนตัวเองได้</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-white/10 rounded-lg border border-white/20">
+                        <p class="font-bold text-yellow-300 mb-1">ตัวอย่างสถานการณ์:</p>
+                        <p class="text-sm opacity-90">
+                            "นาย ก." ลงเวรจุดบริการวันเสาร์ <br>
+                            👉 <strong>วันเสาร์:</strong> ชื่อ นาย ก. จะหายไปจากตัวเลือกทั้งหมด (ป้องกันเวรซ้ำ) <br>
+                            👉 <strong>วันอาทิตย์:</strong> ชื่อ นาย ก. จะกลับมาให้เลือกเป็นคนแทนได้ปกติ (ข้ามวันได้)
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Service Point -->
+            <section id="service-point" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-slate-800 border-b pb-2 mb-6 flex items-center gap-2">
+                    <span class="text-indigo-500">#</span> การจัดเวรจุดบริการ (Service Points)
+                </h2>
+
+                <p class="mb-4 text-slate-600">
+                    เลือกแท็บ <strong>"เวรจุดบริการ"</strong> เพื่อจัดการบุคคลที่ไปประจำจุดอื่นๆ เช่น ย่านมัทรี, ห้องคอมพิวเตอร์
+                </p>
+
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="step-number">1</div>
+                                <h4 class="font-bold">เลือกชื่อผู้ปฏิบัติงาน</h4>
+                            </div>
+                            <p class="text-sm text-slate-500">
+                                เลือกรายชื่อคนที่ต้องการให้ไปประจำจุดนั้นๆ ระบบจะตัดชื่อคนนี้ออกจากตัวเลือกอื่นในวันเดียวกันทันที
+                            </p>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="step-number">2</div>
+                                <h4 class="font-bold">เพิ่ม/ลด จำนวนคน</h4>
+                            </div>
+                            <p class="text-sm text-slate-500">
+                                กดปุ่ม <span class="text-slate-700 font-bold border rounded px-1 text-xs">+ เพิ่มคน</span> ด้านล่างเพื่อเพิ่มแถว หากต้องการเพิ่มจำนวนคนต่อจุดอย่างถาวร ให้ไปที่เมนูตั้งค่า
+                            </p>
+                        </div>
+                        <div class="p-5 bg-orange-50/50">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="step-number bg-orange-500">!</div>
+                                <h4 class="font-bold text-orange-800">การแทนเวรอัตโนมัติ</h4>
+                            </div>
+                            <p class="text-sm text-orange-700">
+                                หากคนที่คุณเลือกในจุดบริการ <strong>"ถูกแทนเวร"</strong> ในหน้าหอสมุด ระบบจะเปลี่ยนชื่อในจุดบริการเป็นคนแทนให้อัตโนมัติ พร้อมขึ้นข้อความแจ้งเตือน
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Tools -->
+            <section id="tools" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-slate-800 border-b pb-2 mb-6 flex items-center gap-2">
+                    <span class="text-indigo-500">#</span> เครื่องมือและการตั้งค่า
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">การตั้งค่าจุดบริการ</h4>
+                            <p class="text-sm text-slate-600 mt-1">คุณสามารถเพิ่มจุดบริการใหม่ (เช่น "ห้องประชุม") หรือลบจุดที่ไม่ต้องการออกได้ รวมถึงกำหนดจำนวนคนเริ่มต้น (Default Slots) ของแต่ละจุดเพื่อให้ระบบสร้างช่องว่างให้อัตโนมัติในสัปดาห์ถัดไป</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                        <div class="p-3 bg-red-50 text-red-500 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">ล้างข้อมูล (Clear Data)</h4>
+                            <p class="text-sm text-slate-600 mt-1">ใช้สำหรับลบข้อมูลในหน้าที่เปิดอยู่ทิ้งทั้งหมด <strong>(ระวัง: ลบแล้วกู้คืนไม่ได้)</strong> ใช้เมื่อต้องการเริ่มจัดเวรใหม่ตั้งแต่ต้น</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm border border-slate-100">
+                        <div class="p-3 bg-gray-100 text-gray-500 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">ระบบล็อก (Lock System)</h4>
+                            <p class="text-sm text-slate-600 mt-1">เมื่อจัดตารางเสร็จแล้ว ควรกดปุ่มล็อกเพื่อป้องกันการแก้ไขโดยไม่ตั้งใจ หากต้องการแก้ไขให้กดปุ่มปลดล็อกก่อนเสมอ</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="mt-20 border-t pt-6 text-center text-slate-400 text-sm">
+                <p>คู่มือการใช้งานระบบจัดตารางเวร &copy; 2025</p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+</html>
